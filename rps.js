@@ -5,21 +5,29 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
-    return 'Tie';
+    let tie = 'Tie'
+    return tie;
   } else if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection === 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper') 
   ) {
-    return 'Player wins';
+    let playerWins = 'Player wins';
+    return playerWins;
   } else {
-    return 'Computer wins';
+    let computerWins = 'Computer wins'
+    return computerWins;
   }
 }
 
-const playerSelection = window.prompt().toLowerCase();
+const playerSelection = window.prompt('rock').toLowerCase();
 const computerSelection = getComputerChoice();
 console.log(playerSelection)
 console.log(computerSelection)
 console.log(playRound(playerSelection, computerSelection))
 
+// function game() {
+//   for (let i = 0; i < 5; i += 1) {
+//     playRound(playerSelection, computerSelection)
+//   }
+// }
