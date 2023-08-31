@@ -5,11 +5,15 @@ function getComputerChoice() {
 
 function getWinner(playerScore, computerScore) {
   console.log(playerScore, computerScore)
+  pScore.textContent = `player = ${playerScore}`;
+  cScore.textContent = `computer = ${computerScore}`;
   if (playerScore === 5) {
-    console.log('player wins')
+    console.log('player wins');
+    gameResult.textContent = 'game result = player wins';
   }
   if (computerScore === 5) {
-    console.log('computer wins')
+    console.log('computer wins');
+    gameResult.textContent = 'game result = computer wins';
   }
 }
 
@@ -17,11 +21,11 @@ const rock = document.querySelector('.rock')
 const paper = document.querySelector('.paper')
 const scissors = document.querySelector('.scissors')
 const divContainer = document.querySelector('.container');
-const divResult = document.createElement('div');
-
-divResult.classList.add('result');
-divContainer.append(divResult);
-
+const divResult = document.querySelector('.result');
+const compPick = document.querySelector('.comp-pick');
+const pScore = document.querySelector('.player-score');
+const cScore = document.querySelector('.computer-score');
+const gameResult = document.querySelector('.game-result');
 
 // ---------------------------------------------------------
 
@@ -36,7 +40,7 @@ function game() {
   function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
       tieScore += 1
-      divResult.textContent = 'tie'
+      divResult.textContent = 'match result = tie'
       
       return 'tie';
     } else if (
@@ -45,13 +49,11 @@ function game() {
       (playerSelection === 'scissors' && computerSelection === 'paper') 
     ) {
       playerScore += 1;
-      divResult.textContent = `player wins, ${playerSelection} beats ${computerSelection}`;
-      
+      divResult.textContent = `match result = player wins, ${playerSelection} beats ${computerSelection}`;
       return `player wins, ${playerSelection} beats ${computerSelection}`;
     } else {
       computerScore += 1;
-      divResult.textContent = `computer wins, ${computerSelection} beats ${playerSelection}`;
-      
+      divResult.textContent = `match result = computer wins, ${computerSelection} beats ${playerSelection}`;
       return `computer wins, ${computerSelection} beats ${playerSelection}`;
     }
   
@@ -60,6 +62,7 @@ function game() {
   rock.addEventListener('click', () => {
     const playerSelection = 'rock';
     const computerSelection = getComputerChoice();
+    compPick.textContent = `computer picks = ${computerSelection}`;
     let result = playRound(playerSelection, computerSelection);
     console.log(result);
     getWinner(playerScore, computerScore);
@@ -68,6 +71,7 @@ function game() {
   paper.addEventListener('click', () => {
     const playerSelection = 'paper';
     const computerSelection = getComputerChoice();
+    compPick.textContent = `computer picks = ${computerSelection}`;
     let result = playRound(playerSelection, computerSelection);
     console.log(result);
     getWinner(playerScore, computerScore);
@@ -76,6 +80,7 @@ function game() {
   scissors.addEventListener('click', () => {
     const playerSelection = 'scissors';
     const computerSelection = getComputerChoice();
+    compPick.textContent = `computer picks = ${computerSelection}`;
     let result = playRound(playerSelection, computerSelection);
     console.log(result);
     getWinner(playerScore, computerScore);
